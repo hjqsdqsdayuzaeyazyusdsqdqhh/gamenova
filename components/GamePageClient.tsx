@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { Game } from "@/data/games";
+import { isPlayableGame } from "@/lib/validate";
 import GameIframe from "@/components/GameIframe";
 import FavoriteButton from "@/components/FavoriteButton";
 import ShareButtons from "@/components/ShareButtons";
@@ -18,7 +19,7 @@ interface Props {
 export default function GamePageClient({ game, related }: Props) {
   const [play, setPlay] = useState(false);
 
-  const isValid = game.iframe_url && game.iframe_url.startsWith("https://");
+  const isValid = isPlayableGame(game);
 
   return (
     <div className="min-h-screen bg-[#0b0b1a]">

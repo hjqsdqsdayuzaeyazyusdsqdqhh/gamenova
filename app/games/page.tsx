@@ -4,7 +4,7 @@ import { Suspense, useMemo } from "react";
 import { useSearchParams } from "next/navigation";
 import { motion } from "framer-motion";
 import { games, categories } from "@/data/games";
-import { validateGame } from "@/lib/validate";
+import { isPlayableGame } from "@/lib/validate";
 import GameCard from "@/components/GameCard";
 import SkeletonCard from "@/components/SkeletonCard";
 import SearchBar from "@/components/SearchBar";
@@ -12,10 +12,10 @@ import CategoryFilter from "@/components/CategoryFilter";
 import DebugLog from "@/components/DebugLog";
 import Link from "next/link";
 
-const validGames = games.filter(validateGame);
+const validGames = games.filter(isPlayableGame);
 
 if (typeof window !== "undefined") {
-  const invalid = games.filter((g) => !validateGame(g));
+  const invalid = games.filter((g) => !isPlayableGame(g));
   if (invalid.length > 0) {
     console.warn(`[GameNova] ${invalid.length} invalid game(s) blocked:`, invalid.map((g) => g.title));
   }

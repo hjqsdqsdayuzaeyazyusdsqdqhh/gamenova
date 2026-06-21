@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useState, useEffect } from "react";
+import Link from "next/link";
 
 interface Props {
   url: string;
@@ -18,6 +19,7 @@ export default function GameIframe({ url, title }: Props) {
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [hasError, setHasError] = useState(false);
+  const [stuck, setStuck] = useState(false);
   const [reloadKey, setReloadKey] = useState(0);
 
   const isValid = url && url.length >= 10 && isValidIframe(url);
@@ -43,6 +45,7 @@ export default function GameIframe({ url, title }: Props) {
   const handleReload = () => {
     setHasError(false);
     setIsLoading(true);
+    setStuck(false);
     setReloadKey((k) => k + 1);
   };
 
@@ -55,11 +58,12 @@ export default function GameIframe({ url, title }: Props) {
     console.log(`[GameNova] loading game: ${title} | ${url}`);
     const timer = setTimeout(() => {
       if (isLoading) {
-        console.warn(`[GameNova] iframe timeout: ${title}`);
+        console.warn(`[GameNova] iframe stuck: ${title}`);
+        setStuck(true);
         setHasError(true);
         setIsLoading(false);
       }
-    }, 45000);
+    }, 10000);
     return () => clearTimeout(timer);
   }, [isLoading, reloadKey, title, url]);
 
@@ -101,20 +105,36 @@ export default function GameIframe({ url, title }: Props) {
 
       {hasError ? (
         <div className="absolute inset-0 bg-black z-20 flex items-center justify-center">
-          <div className="text-center">
+          <div className="text-center max-w-sm mx-auto px-6">
             <div className="w-14 h-14 mx-auto rounded-full bg-red-500/10 flex items-center justify-center mb-4">
               <svg className="w-7 h-7 text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z" />
               </svg>
             </div>
-            <p className="text-gray-400 font-semibold">Game not available</p>
-            <p className="text-gray-600 text-sm mt-1">The game failed to load. Try again.</p>
-            <button
-              onClick={handleReload}
-              className="mt-4 px-4 py-2 glass rounded-xl text-accent text-sm hover:bg-accent/10 transition"
-            >
-              Retry
-            </button>
+            <p className="text-gray-400 font-semibold">
+              {stuck ? "Game not available here" : "Game not available"}
+            </p>
+            <p className="text-gray-600 text-sm mt-1">
+              {stuck
+                ? "This game may be blocked or unavailable for embedding. Try another game."
+                : "The game failed to load. Try again."}
+            </p>
+            <div className="flex items-center justify-center gap-3 mt-4">
+              <button
+                onClick={handleReload}
+                className="px-4 py-2 glass rounded-xl text-accent text-sm hover:bg-accent/10 transition"
+              >
+                Retry
+              </button>
+              {stuck && (
+                <Link
+                  href="/games"
+                  className="px-4 py-2 bg-accent text-dark font-semibold rounded-xl text-sm hover:opacity-90 transition"
+                >
+                  Try another game
+                </Link>
+              )}
+            </div>
           </div>
         </div>
       ) : (

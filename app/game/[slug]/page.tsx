@@ -1,10 +1,10 @@
 import { Metadata } from "next";
 import { games } from "@/data/games";
-import { validateGame } from "@/lib/validate";
+import { isPlayableGame } from "@/lib/validate";
 import GamePageClient from "@/components/GamePageClient";
 import { notFound } from "next/navigation";
 
-const validGames = games.filter(validateGame);
+const validGames = games.filter(isPlayableGame);
 
 interface Props {
   params: Promise<{ slug: string }>;

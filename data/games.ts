@@ -55,11 +55,11 @@ export const games: Game[] = [
     featured: false, trending: true, popularity_score: 85,
   },
   {
-    id: 6, slug: "max-speed", title: "Max Speed",
-    description: "Race shiny sports cars on thrilling 3D tracks full of jumps and stunts. Perform tricks and upgrade your vehicles.",
+    id: 6, slug: "vortex-ball", title: "Vortex Ball",
+    description: "Roll through an ever-changing vibrant tunnel filled with deadly obstacles. Dodge, weave, and survive in this fast-paced infinite runner.",
     thumbnail: "from-orange-600 to-red-700", category: "Racing",
-    tags: ["racing", "speed", "stunts"],
-    iframe_url: "https://html5.gamedistribution.com/48f3d14ced3646b781e256ca7f9bfa30/",
+    tags: ["racing", "vortex", "reflex"],
+    iframe_url: "https://html5.gamedistribution.com/22c23c982349439294e9a3d0d55b7a76/",
     featured: true, trending: false, popularity_score: 92,
   },
   {

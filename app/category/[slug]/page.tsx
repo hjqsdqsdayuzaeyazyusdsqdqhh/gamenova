@@ -1,11 +1,11 @@
 import { Metadata } from "next";
 import Link from "next/link";
 import { games, categories } from "@/data/games";
-import { validateGame } from "@/lib/validate";
+import { isPlayableGame } from "@/lib/validate";
 import GameCard from "@/components/GameCard";
 import { notFound } from "next/navigation";
 
-const validGames = games.filter(validateGame);
+const validGames = games.filter(isPlayableGame);
 
 interface Props {
   params: Promise<{ slug: string }>;

@@ -4,10 +4,10 @@ import { Suspense, useMemo } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { games } from "@/data/games";
-import { validateGame } from "@/lib/validate";
+import { isPlayableGame } from "@/lib/validate";
 import GameCard from "@/components/GameCard";
 
-const validGames = games.filter(validateGame);
+const validGames = games.filter(isPlayableGame);
 
 function fuzzyScore(text: string, query: string): number {
   const lowerText = text.toLowerCase();

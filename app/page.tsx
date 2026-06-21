@@ -4,9 +4,9 @@ import TrendingSlider from "@/components/TrendingSlider";
 import RecentlyPlayedSection from "@/components/RecentlyPlayedSection";
 import DebugLog from "@/components/DebugLog";
 import { games, categories } from "@/data/games";
-import { validateGame } from "@/lib/validate";
+import { isPlayableGame } from "@/lib/validate";
 
-const validGames = games.filter(validateGame);
+const validGames = games.filter(isPlayableGame);
 
 export default function Home() {
   const featuredGames = validGames.filter((g) => g.featured);
