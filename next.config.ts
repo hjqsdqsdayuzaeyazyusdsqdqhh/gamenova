@@ -20,6 +20,27 @@ const nextConfig: NextConfig = {
           },
         ],
       },
+      {
+        source: "/api/gd/:path*",
+        headers: [
+          {
+            key: "Content-Security-Policy",
+            value: "default-src 'self' 'unsafe-inline' 'unsafe-eval'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; worker-src 'self' blob:; connect-src 'self' blob: data:; img-src 'self' https: data: blob:; style-src 'self' 'unsafe-inline'; media-src 'self' blob:; font-src 'self' data:",
+          },
+        ],
+      },
+    ];
+  },
+  async rewrites() {
+    return [
+      {
+        source: "/api/gd/:uuid/index.html",
+        destination: "https://html5.gamedistribution.com/rvvASMiM/:uuid/index.html",
+      },
+      {
+        source: "/api/gd/:uuid/:path*",
+        destination: "https://html5.gamedistribution.com/rvvASMiM/:uuid/:path*",
+      },
     ];
   },
 };

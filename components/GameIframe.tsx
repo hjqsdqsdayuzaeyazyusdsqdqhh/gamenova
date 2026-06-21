@@ -9,9 +9,10 @@ interface Props {
 }
 
 export function isValidIframe(url: string): boolean {
-  if (!url || !url.startsWith("https://")) return false;
-  if (url.includes("gamemonetize")) return true;
-  return url.startsWith("https://html5.gamedistribution.com/rvvASMiM/") && url.endsWith("/index.html");
+  if (!url) return false;
+  if (url.startsWith("/api/gd/") && url.endsWith("/index.html")) return true;
+  if (url.startsWith("https://") && url.includes("gamemonetize")) return true;
+  return false;
 }
 
 export default function GameIframe({ url, title }: Props) {
