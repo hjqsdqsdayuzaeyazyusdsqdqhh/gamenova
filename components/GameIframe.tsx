@@ -54,14 +54,14 @@ export default function GameIframe({ url, title }: Props) {
 
   useEffect(() => {
     if (!playClicked) return;
-    console.log(`[GameNova] loading game: ${title} | slug: ${url}`);
+    console.log(`[GameNova] loading game: ${title} | ${url}`);
     const timer = setTimeout(() => {
       if (isLoading) {
         console.warn(`[GameNova] iframe timeout: ${title}`);
         setHasError(true);
         setIsLoading(false);
       }
-    }, 15000);
+    }, 45000);
     return () => clearTimeout(timer);
   }, [playClicked, isLoading, reloadKey, title, url]);
 
@@ -147,14 +147,13 @@ export default function GameIframe({ url, title }: Props) {
           width="100%"
           height="700px"
           style={{ border: "none", width: "100%", height: "700px" }}
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allow="autoplay; accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen; gamepad; storage-access"
           allowFullScreen
           onLoad={handleIframeLoad}
           onError={() => {
             console.error(`[GameNova] iframe error: ${title}`);
             setHasError(true);
           }}
-          loading="lazy"
         />
       )}
 
