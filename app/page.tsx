@@ -2,6 +2,7 @@ import Link from "next/link";
 import GameCard from "@/components/GameCard";
 import TrendingSlider from "@/components/TrendingSlider";
 import RecentlyPlayedSection from "@/components/RecentlyPlayedSection";
+import DebugLog from "@/components/DebugLog";
 import { games, categories } from "@/data/games";
 import { validateGame } from "@/lib/validate";
 
@@ -13,8 +14,28 @@ export default function Home() {
   const newGames = [...validGames].sort((a, b) => b.id - a.id).slice(0, 8);
   const popularGames = [...validGames].sort((a, b) => b.popularity_score - a.popularity_score).slice(0, 8);
 
+  if (validGames.length === 0) {
+    return (
+      <div className="py-28 px-4 text-center">
+        <div className="max-w-md mx-auto">
+          <div className="w-16 h-16 mx-auto rounded-full bg-red-500/10 flex items-center justify-center mb-4">
+            <svg className="w-8 h-8 text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z" />
+            </svg>
+          </div>
+          <h1 className="text-2xl font-bold text-white mb-2">No games available</h1>
+          <p className="text-gray-400 text-sm mb-4">Total games: {games.length} | Valid games: {validGames.length}</p>
+          <pre className="text-left text-xs text-gray-600 bg-white/5 rounded-xl p-4 overflow-auto max-h-60">
+            {JSON.stringify(games.slice(0, 2), null, 2)}
+          </pre>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div>
+      <DebugLog games={games} validCount={validGames.length} />
       <section className="relative py-28 px-4 text-center overflow-hidden bg-grid">
         <div className="absolute inset-0 bg-gradient-to-b from-accent/5 via-transparent to-transparent pointer-events-none" />
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-accent/5 rounded-full blur-3xl pointer-events-none animate-float" />

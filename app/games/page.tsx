@@ -9,6 +9,7 @@ import GameCard from "@/components/GameCard";
 import SkeletonCard from "@/components/SkeletonCard";
 import SearchBar from "@/components/SearchBar";
 import CategoryFilter from "@/components/CategoryFilter";
+import DebugLog from "@/components/DebugLog";
 import Link from "next/link";
 
 const validGames = games.filter(validateGame);
@@ -54,6 +55,28 @@ function GamesContent() {
     return result;
   }, [currentSearch, currentCategory, currentSort]);
 
+  const showDebug = validGames.length === 0;
+
+  if (showDebug) {
+    return (
+      <div className="py-28 px-4 text-center">
+        <div className="max-w-md mx-auto">
+          <div className="w-16 h-16 mx-auto rounded-full bg-red-500/10 flex items-center justify-center mb-4">
+            <svg className="w-8 h-8 text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z" />
+            </svg>
+          </div>
+          <h1 className="text-2xl font-bold text-white mb-2">No games available</h1>
+          <p className="text-gray-400 text-sm mb-4">Total games in data: {games.length} | Passed validation: {validGames.length}</p>
+          <p className="text-gray-500 text-xs mb-2">Check browser console (F12) for debug info</p>
+          <pre className="text-left text-xs text-gray-600 bg-white/5 rounded-xl p-4 overflow-auto max-h-60">
+            {JSON.stringify(games.slice(0, 2), null, 2)}
+          </pre>
+        </div>
+      </div>
+    );
+  }
+
   const allCategories = categories.map((c) => c.name);
 
   const sortOptions = [
@@ -64,6 +87,7 @@ function GamesContent() {
 
   return (
     <div className="py-12 px-4 max-w-7xl mx-auto">
+      <DebugLog games={games} validCount={validGames.length} />
       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-8">
         <div>
           <h1 className="text-4xl font-bold text-white">
