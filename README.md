@@ -1,17 +1,22 @@
 # GameNova
 
-A professional browser games portal built with Next.js 15, TypeScript, and Tailwind CSS.
+A professional browser games portal built with Next.js 15, TypeScript, Tailwind CSS, and Framer Motion.
 
 ## Features
 
-- 100 games across 7 categories
-- Full-screen iframe game player
+- 200 games across 7 categories
+- Full-screen iframe game player with lazy loading
 - Favorites system (localStorage)
 - Recently played tracking
-- Search by title and tags
-- Category filtering
-- Featured, Trending, New, and Popular sections
-- Glassmorphism dark UI
+- Fuzzy search with dedicated /search page
+- Category filtering with sort options (Popular, Newest)
+- Featured, Trending, New, Most Played, and Recently Played sections
+- Horizontal trending slider (drag to scroll)
+- Floating particles background
+- Popularity score badges
+- Framer Motion animations throughout
+- Glassmorphism dark UI with neon accents
+- Twitter Card metadata for social sharing
 - Dynamic SEO for every page
 - Sitemap.xml and robots.txt
 - Fully responsive
@@ -40,14 +45,20 @@ Deploy to Vercel with zero configuration.
 
 ```
 app/              # Next.js App Router pages
-  page.tsx        # Homepage
-  games/          # Games directory
+  page.tsx        # Homepage with animated hero, sliders
+  games/          # Game directory with sort/filter
   game/[slug]/    # Individual game pages
-  category/[slug]/ # Category pages
+  category/[slug]/ # Category pages sorted by popularity
+  search/         # Fuzzy search results page
   sitemap.xml/    # Dynamic sitemap
   robots.txt/     # Dynamic robots.txt
 components/       # Reusable UI components
-data/             # Game data (100 games)
+  ParticlesBackground  # Canvas floating particles
+  TrendingSlider       # Framer Motion horizontal slider
+  RecentlyPlayedSection # Recently played grid
+  GameCard             # Card with motion hover + popularity badge
+  GameIframe           # Lazy-loaded iframe player
+data/             # Game data (200 games with popularity_score)
 lib/              # Client-side storage utilities
 public/           # Static assets
 ```

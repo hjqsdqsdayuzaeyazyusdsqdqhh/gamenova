@@ -35,6 +35,20 @@ body {
       linear-gradient(90deg, rgba(0, 212, 255, 0.03) 1px, transparent 1px);
     background-size: 40px 40px;
   }
+
+  .animate-gradient {
+    background-size: 200% 200%;
+    animation: gradientXY 15s ease infinite;
+  }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 @layer base {

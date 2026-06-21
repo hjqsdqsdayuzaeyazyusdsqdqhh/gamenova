@@ -19,6 +19,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title: `${cat.name} Games - GameNova`,
       description: `Play the best free ${cat.name.toLowerCase()} browser games.`,
     },
+    twitter: {
+      card: "summary_large_image",
+      title: `${cat.name} Games - GameNova`,
+      description: `Play the best free ${cat.name.toLowerCase()} browser games.`,
+    },
   };
 }
 
@@ -27,9 +32,9 @@ export default async function CategoryPage({ params }: Props) {
   const cat = categories.find((c) => c.slug === slug);
   if (!cat) notFound();
 
-  const categoryGames = games.filter(
-    (g) => g.category.toLowerCase() === slug
-  );
+  const categoryGames = games
+    .filter((g) => g.category.toLowerCase() === slug)
+    .sort((a, b) => b.popularity_score - a.popularity_score);
 
   return (
     <div className="py-12 px-4 max-w-7xl mx-auto">

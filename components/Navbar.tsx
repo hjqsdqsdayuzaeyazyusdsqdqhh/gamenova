@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { categories } from "@/data/games";
 
 export default function Navbar() {
@@ -29,6 +30,12 @@ export default function Navbar() {
           >
             Browse
           </Link>
+          <Link
+            href="/search"
+            className="text-gray-300 hover:text-accent transition text-sm font-medium"
+          >
+            Search
+          </Link>
           <div
             className="relative"
             onMouseEnter={() => setShowCategories(true)}
@@ -50,20 +57,28 @@ export default function Navbar() {
                 />
               </svg>
             </button>
-            {showCategories && (
-              <div className="absolute top-full right-0 mt-3 glass rounded-xl shadow-2xl py-2 w-44">
-                {categories.map((cat) => (
-                  <Link
-                    key={cat.slug}
-                    href={`/category/${cat.slug}`}
-                    className="block px-4 py-2.5 text-sm text-gray-300 hover:text-accent hover:bg-accent/5 transition"
-                    onClick={() => setShowCategories(false)}
-                  >
-                    {cat.name}
-                  </Link>
-                ))}
-              </div>
-            )}
+            <AnimatePresence>
+              {showCategories && (
+                <motion.div
+                  initial={{ opacity: 0, y: -8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -8 }}
+                  transition={{ duration: 0.15 }}
+                  className="absolute top-full right-0 mt-3 glass rounded-xl shadow-2xl py-2 w-44"
+                >
+                  {categories.map((cat) => (
+                    <Link
+                      key={cat.slug}
+                      href={`/category/${cat.slug}`}
+                      className="block px-4 py-2.5 text-sm text-gray-300 hover:text-accent hover:bg-accent/5 transition"
+                      onClick={() => setShowCategories(false)}
+                    >
+                      {cat.name}
+                    </Link>
+                  ))}
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
         </div>
 
@@ -82,39 +97,55 @@ export default function Navbar() {
         </button>
       </div>
 
-      {isOpen && (
-        <div className="md:hidden glass border-t border-white/5 px-4 py-4 space-y-1">
-          <Link
-            href="/"
-            className="block text-gray-300 hover:text-accent transition py-2.5 text-sm"
-            onClick={() => setIsOpen(false)}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            className="md:hidden glass border-t border-white/5 px-4 overflow-hidden"
           >
-            Home
-          </Link>
-          <Link
-            href="/games"
-            className="block text-gray-300 hover:text-accent transition py-2.5 text-sm"
-            onClick={() => setIsOpen(false)}
-          >
-            Browse
-          </Link>
-          <div className="pt-3 mt-3 border-t border-white/5">
-            <p className="text-xs text-gray-500 uppercase tracking-wider mb-2 px-2">
-              Categories
-            </p>
-            {categories.map((cat) => (
+            <div className="py-4 space-y-1">
               <Link
-                key={cat.slug}
-                href={`/category/${cat.slug}`}
-                className="block text-gray-300 hover:text-accent transition py-2 px-2 text-sm"
+                href="/"
+                className="block text-gray-300 hover:text-accent transition py-2.5 text-sm"
                 onClick={() => setIsOpen(false)}
               >
-                {cat.name}
+                Home
               </Link>
-            ))}
-          </div>
-        </div>
-      )}
+              <Link
+                href="/games"
+                className="block text-gray-300 hover:text-accent transition py-2.5 text-sm"
+                onClick={() => setIsOpen(false)}
+              >
+                Browse
+              </Link>
+              <Link
+                href="/search"
+                className="block text-gray-300 hover:text-accent transition py-2.5 text-sm"
+                onClick={() => setIsOpen(false)}
+              >
+                Search
+              </Link>
+              <div className="pt-3 mt-3 border-t border-white/5">
+                <p className="text-xs text-gray-500 uppercase tracking-wider mb-2 px-2">
+                  Categories
+                </p>
+                {categories.map((cat) => (
+                  <Link
+                    key={cat.slug}
+                    href={`/category/${cat.slug}`}
+                    className="block text-gray-300 hover:text-accent transition py-2 px-2 text-sm"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    {cat.name}
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </nav>
   );
 }

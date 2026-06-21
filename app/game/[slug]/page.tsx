@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Metadata } from "next";
-import { games, getGradient } from "@/data/games";
+import { games } from "@/data/games";
 import GameCard from "@/components/GameCard";
 import GameIframe from "@/components/GameIframe";
 import FavoriteButton from "@/components/FavoriteButton";
@@ -24,6 +24,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title: `${game.title} - GameNova`,
       description: game.description,
       type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${game.title} - GameNova`,
+      description: game.description,
     },
   };
 }
@@ -65,7 +70,13 @@ export default async function GamePage({ params }: Props) {
               {game.title}
             </h1>
           </div>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-3">
+            <div className="flex items-center gap-1.5 bg-accent/10 text-accent text-sm font-semibold px-3 py-1.5 rounded-full">
+              <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+              </svg>
+              {game.popularity_score}
+            </div>
             <ShareButtons title={game.title} slug={game.slug} />
             <FavoriteButton gameId={game.id} />
           </div>

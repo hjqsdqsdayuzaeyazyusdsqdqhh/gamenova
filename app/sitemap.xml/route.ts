@@ -6,6 +6,7 @@ export async function GET() {
   const staticPages = [
     { url: "/", priority: "1.0" },
     { url: "/games", priority: "0.9" },
+    { url: "/search", priority: "0.6" },
   ];
 
   const gamePages = games.map((g) => ({

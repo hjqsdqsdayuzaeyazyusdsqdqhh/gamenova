@@ -11,7 +11,13 @@ export default function GameIframe({ url, title }: Props) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [shouldLoad, setShouldLoad] = useState(false);
   const isPlaceholder = url.includes("example.com");
+
+  useEffect(() => {
+    const timer = setTimeout(() => setShouldLoad(true), 100);
+    return () => clearTimeout(timer);
+  }, []);
 
   useEffect(() => {
     const handleFsChange = () => {
@@ -76,14 +82,17 @@ export default function GameIframe({ url, title }: Props) {
         </div>
       )}
 
-      <iframe
-        src={url}
-        title={title}
-        className={`w-full h-full ${isPlaceholder ? "opacity-0" : ""}`}
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowFullScreen
-        onLoad={() => setIsLoading(false)}
-      />
+      {shouldLoad && (
+        <iframe
+          src={url}
+          title={title}
+          className={`w-full h-full ${isPlaceholder ? "opacity-0" : ""}`}
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+          onLoad={() => setIsLoading(false)}
+          loading="lazy"
+        />
+      )}
 
       <button
         onClick={toggleFullscreen}
