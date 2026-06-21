@@ -10,23 +10,16 @@ interface Props {
   game: Game;
 }
 
-const FALLBACK_IMG = "https://via.placeholder.com/300x200/1a1a2e/ffffff?text=Game";
-
 export default function GameCard({ game }: Props) {
   const [fav, setFav] = useState(false);
   const [imgError, setImgError] = useState(false);
+  const [imgLoaded, setImgLoaded] = useState(false);
 
   useEffect(() => {
     setFav(isFavorite(game.id));
   }, [game.id]);
 
-  useEffect(() => {
-    if (game.image_url) {
-      console.log(`[GameCard] "${game.title}" image: ${game.image_url}`);
-    } else {
-      console.log(`[GameCard] "${game.title}" has no image_url, using placeholder`);
-    }
-  }, [game.image_url, game.title]);
+  const gradientClass = `bg-gradient-to-br ${game.thumbnail || "from-gray-800 to-gray-900"}`;
 
   const handleFav = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -34,10 +27,6 @@ export default function GameCard({ game }: Props) {
     const result = toggleFavorite(game.id);
     setFav(result);
   };
-
-  const imageSrc = game.image_url && !imgError
-    ? game.image_url
-    : `${FALLBACK_IMG}?text=${encodeURIComponent(game.title)}`;
 
   return (
     <motion.div
@@ -68,13 +57,16 @@ export default function GameCard({ game }: Props) {
           {game.popularity_score}
         </div>
 
-        <div className="relative overflow-hidden rounded-t-xl bg-gradient-to-br from-gray-800 to-gray-900">
-          <img
-            src={imageSrc}
-            alt={game.title}
-            className="w-full h-[180px] object-cover block opacity-100 rounded-t-xl"
-            onError={() => setImgError(true)}
-          />
+        <div className={`relative overflow-hidden rounded-t-xl ${gradientClass}`}>
+          {game.image_url && !imgError && (
+            <img
+              src={game.image_url}
+              alt={game.title}
+              className={`w-full h-[180px] object-cover block rounded-t-xl transition-opacity duration-300 ${imgLoaded ? "opacity-100" : "opacity-0"}`}
+              onError={() => setImgError(true)}
+              onLoad={() => setImgLoaded(true)}
+            />
+          )}
         </div>
 
         <div className="p-4 flex items-center justify-between gap-3">

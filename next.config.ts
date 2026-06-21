@@ -24,8 +24,8 @@ const nextConfig: NextConfig = {
         source: "/api/gd/:path*",
         headers: [
           {
-            key: "Content-Security-Policy",
-            value: "default-src 'self' 'unsafe-inline' 'unsafe-eval'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; worker-src 'self' blob:; connect-src 'self' blob: data:; img-src 'self' https: data: blob:; style-src 'self' 'unsafe-inline'; media-src 'self' blob:; font-src 'self' data:",
+            key: "Access-Control-Allow-Origin",
+            value: "*",
           },
         ],
       },

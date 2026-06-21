@@ -10,6 +10,7 @@ interface Props {
 
 export function isValidIframe(url: string): boolean {
   if (!url) return false;
+  if (url.startsWith("/api/game/")) return true;
   if (url.startsWith("/api/gd/") && url.endsWith("/index.html")) return true;
   if (url.startsWith("https://") && url.includes("gamemonetize")) return true;
   return false;
