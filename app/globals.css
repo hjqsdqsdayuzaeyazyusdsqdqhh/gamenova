@@ -68,4 +68,9 @@ body {
   ::-webkit-scrollbar-thumb:hover {
     background: #2a2a4e;
   }
+
+  iframe[title*="Game"] {
+    display: block;
+    border: none;
+  }
 }

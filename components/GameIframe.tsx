@@ -20,7 +20,8 @@ export default function GameIframe({ url, title }: Props) {
   const [hasError, setHasError] = useState(false);
   const [playClicked, setPlayClicked] = useState(false);
   const [reloadKey, setReloadKey] = useState(0);
-  const isValid = isValidIframe(url);
+
+  const isValid = url && url.length >= 10 && isValidIframe(url);
 
   useEffect(() => {
     const handleFsChange = () => {
@@ -47,31 +48,34 @@ export default function GameIframe({ url, title }: Props) {
   };
 
   const handleIframeLoad = () => {
+    console.log(`[GameNova] iframe loaded: ${title} | ${url}`);
     setIsLoading(false);
   };
 
   useEffect(() => {
-    if (!playClicked || !iframeRef.current) return;
+    if (!playClicked) return;
+    console.log(`[GameNova] loading game: ${title} | slug: ${url}`);
     const timer = setTimeout(() => {
       if (isLoading) {
+        console.warn(`[GameNova] iframe timeout: ${title}`);
         setHasError(true);
         setIsLoading(false);
       }
     }, 15000);
     return () => clearTimeout(timer);
-  }, [playClicked, isLoading, reloadKey]);
+  }, [playClicked, isLoading, reloadKey, title, url]);
 
   if (!isValid) {
     return (
-      <div className="w-full aspect-video bg-gradient-to-br from-dark via-card to-dark rounded-2xl border border-white/5 flex items-center justify-center">
+      <div className="w-full min-h-[700px] bg-black rounded-2xl border border-white/5 flex items-center justify-center">
         <div className="text-center">
           <div className="w-14 h-14 mx-auto rounded-full bg-red-500/10 flex items-center justify-center mb-4">
             <svg className="w-7 h-7 text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z" />
             </svg>
           </div>
-          <p className="text-gray-400 font-semibold">Game unavailable</p>
-          <p className="text-gray-600 text-sm mt-1">Invalid game source</p>
+          <p className="text-gray-400 font-semibold">Game not available</p>
+          <p className="text-gray-600 text-sm mt-1">Invalid or missing game source</p>
         </div>
       </div>
     );
@@ -79,8 +83,14 @@ export default function GameIframe({ url, title }: Props) {
 
   if (!playClicked) {
     return (
-      <div className="relative w-full aspect-video bg-gradient-to-br from-dark via-card to-dark rounded-2xl border border-white/5 flex items-center justify-center group cursor-pointer" onClick={() => setPlayClicked(true)}>
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent rounded-2xl" />
+      <div
+        className="relative w-full min-h-[700px] bg-gradient-to-br from-dark via-card to-dark rounded-2xl border border-white/5 flex items-center justify-center group cursor-pointer"
+        onClick={() => {
+          console.log(`[GameNova] play clicked: ${title}`);
+          setPlayClicked(true);
+        }}
+      >
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent rounded-2xl pointer-events-none" />
         <div className="text-center relative z-10">
           <div className="w-20 h-20 mx-auto rounded-full bg-accent/90 flex items-center justify-center shadow-lg shadow-accent/20 group-hover:scale-110 transition-transform mb-4">
             <svg className="w-9 h-9 text-dark ml-1" fill="currentColor" viewBox="0 0 24 24">
@@ -97,12 +107,12 @@ export default function GameIframe({ url, title }: Props) {
   return (
     <div
       ref={containerRef}
-      className={`relative bg-black rounded-2xl overflow-hidden border border-white/5 ${
-        isFullscreen ? "w-screen h-screen" : "w-full aspect-video"
+      className={`relative bg-black rounded-2xl overflow-hidden border border-white/5 flex ${
+        isFullscreen ? "w-screen h-screen" : "w-full min-h-[700px]"
       }`}
     >
       {isLoading && (
-        <div className="absolute inset-0 bg-dark z-10 flex items-center justify-center">
+        <div className="absolute inset-0 bg-black z-10 flex items-center justify-center">
           <div className="flex flex-col items-center gap-3">
             <div className="w-10 h-10 border-2 border-accent border-t-transparent rounded-full animate-spin" />
             <p className="text-gray-500 text-sm">Loading game...</p>
@@ -111,15 +121,15 @@ export default function GameIframe({ url, title }: Props) {
       )}
 
       {hasError ? (
-        <div className="absolute inset-0 bg-gradient-to-br from-dark via-card to-dark z-20 flex items-center justify-center">
+        <div className="absolute inset-0 bg-black z-20 flex items-center justify-center">
           <div className="text-center">
             <div className="w-14 h-14 mx-auto rounded-full bg-red-500/10 flex items-center justify-center mb-4">
               <svg className="w-7 h-7 text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z" />
               </svg>
             </div>
-            <p className="text-gray-400 font-semibold">Game unavailable</p>
-            <p className="text-gray-600 text-sm mt-1">The game failed to load. Try again later.</p>
+            <p className="text-gray-400 font-semibold">Game not available</p>
+            <p className="text-gray-600 text-sm mt-1">The game failed to load. Try again.</p>
             <button
               onClick={handleReload}
               className="mt-4 px-4 py-2 glass rounded-xl text-accent text-sm hover:bg-accent/10 transition"
@@ -134,11 +144,16 @@ export default function GameIframe({ url, title }: Props) {
           ref={iframeRef}
           src={url}
           title={title}
-          className="w-full h-full"
+          width="100%"
+          height="700px"
+          style={{ border: "none", width: "100%", height: "700px" }}
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowFullScreen
           onLoad={handleIframeLoad}
-          onError={() => setHasError(true)}
+          onError={() => {
+            console.error(`[GameNova] iframe error: ${title}`);
+            setHasError(true);
+          }}
           loading="lazy"
         />
       )}
