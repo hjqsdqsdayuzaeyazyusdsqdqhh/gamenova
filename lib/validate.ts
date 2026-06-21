@@ -7,10 +7,18 @@ export function isValidIframeUrl(url: string): boolean {
   return false;
 }
 
+export function isApprovedGame(game: Game): boolean {
+  if (!game.iframe_url) return false;
+  if (game.status !== "verified") return false;
+  if (game.playable !== true) return false;
+  if (!game.iframe_url.startsWith("/api/gd/") && !game.iframe_url.startsWith("https://")) return false;
+  return true;
+}
+
 export function isPlayableGame(game: Game): boolean {
-  return isValidIframeUrl(game.iframe_url);
+  return isApprovedGame(game);
 }
 
 export function validateGame(game: Game): boolean {
-  return isPlayableGame(game);
+  return isApprovedGame(game);
 }
