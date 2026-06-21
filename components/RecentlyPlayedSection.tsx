@@ -43,7 +43,13 @@ export default function RecentlyPlayedSection() {
               {game.image_url && (
                 <img src={game.image_url} alt={game.title} className="absolute inset-0 w-full h-full object-cover" />
               )}
-              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors duration-300" />
+              {!game.image_url && (
+                <div className="flex items-center justify-center h-full">
+                  <svg className="w-6 h-6 text-white/20" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                  </svg>
+                </div>
+              )}
               <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                 <div className="w-10 h-10 rounded-full bg-accent/90 flex items-center justify-center">
                   <svg className="w-4 h-4 text-dark ml-0.5" fill="currentColor" viewBox="0 0 24 24">

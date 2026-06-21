@@ -88,11 +88,15 @@ export default function GameCard({ game }: Props) {
             />
           )}
           {(!game.image_url || imgError) && (
-            <span className="text-2xl font-bold text-white/20 select-none group-hover:scale-110 transition-transform duration-300">
-              {game.title}
-            </span>
+            <div className="flex flex-col items-center gap-2">
+              <div className="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center">
+                <svg className="w-6 h-6 text-white/40" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                </svg>
+              </div>
+              <span className="text-lg font-bold text-white/30 select-none">{game.title}</span>
+            </div>
           )}
-          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors duration-300" />
           <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
             <div className="w-14 h-14 rounded-full bg-accent/90 flex items-center justify-center shadow-lg shadow-accent/20">
               <svg className="w-6 h-6 text-dark ml-0.5" fill="currentColor" viewBox="0 0 24 24">
