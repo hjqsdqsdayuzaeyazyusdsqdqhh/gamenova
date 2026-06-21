@@ -7,17 +7,19 @@ interface Props {
   title: string;
 }
 
+export function isValidIframe(url: string): boolean {
+  if (!url || !url.startsWith("https://")) return false;
+  return url.includes("gamedistribution") || url.includes("gamemonetize");
+}
+
 export default function GameIframe({ url, title }: Props) {
   const containerRef = useRef<HTMLDivElement>(null);
+  const iframeRef = useRef<HTMLIFrameElement>(null);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-  const [shouldLoad, setShouldLoad] = useState(false);
-  const isPlaceholder = url.includes("example.com");
-
-  useEffect(() => {
-    const timer = setTimeout(() => setShouldLoad(true), 100);
-    return () => clearTimeout(timer);
-  }, []);
+  const [hasError, setHasError] = useState(false);
+  const [playClicked, setPlayClicked] = useState(false);
+  const isValid = isValidIframe(url);
 
   useEffect(() => {
     const handleFsChange = () => {
@@ -37,6 +39,54 @@ export default function GameIframe({ url, title }: Props) {
     }
   };
 
+  const handleIframeLoad = () => {
+    setIsLoading(false);
+  };
+
+  useEffect(() => {
+    if (!playClicked || !iframeRef.current) return;
+    const timer = setTimeout(() => {
+      if (isLoading) {
+        setHasError(true);
+        setIsLoading(false);
+      }
+    }, 15000);
+    return () => clearTimeout(timer);
+  }, [playClicked, isLoading]);
+
+  if (!isValid) {
+    return (
+      <div className="w-full aspect-video bg-gradient-to-br from-dark via-card to-dark rounded-2xl border border-white/5 flex items-center justify-center">
+        <div className="text-center">
+          <div className="w-14 h-14 mx-auto rounded-full bg-red-500/10 flex items-center justify-center mb-4">
+            <svg className="w-7 h-7 text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z" />
+            </svg>
+          </div>
+          <p className="text-gray-400 font-semibold">Game unavailable</p>
+          <p className="text-gray-600 text-sm mt-1">Invalid game source</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (!playClicked) {
+    return (
+      <div className="relative w-full aspect-video bg-gradient-to-br from-dark via-card to-dark rounded-2xl border border-white/5 flex items-center justify-center group cursor-pointer" onClick={() => setPlayClicked(true)}>
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent rounded-2xl" />
+        <div className="text-center relative z-10">
+          <div className="w-20 h-20 mx-auto rounded-full bg-accent/90 flex items-center justify-center shadow-lg shadow-accent/20 group-hover:scale-110 transition-transform mb-4">
+            <svg className="w-9 h-9 text-dark ml-1" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M8 5v14l11-7z" />
+            </svg>
+          </div>
+          <p className="text-white text-xl font-bold">{title}</p>
+          <p className="text-gray-400 text-sm mt-1">Click to play</p>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div
       ref={containerRef}
@@ -44,65 +94,58 @@ export default function GameIframe({ url, title }: Props) {
         isFullscreen ? "w-screen h-screen" : "w-full aspect-video"
       }`}
     >
-      {isPlaceholder && (
-        <div className="absolute inset-0 bg-gradient-to-br from-dark via-card to-dark flex items-center justify-center z-20 flex-col gap-4">
-          <div className="w-16 h-16 rounded-full bg-accent/10 flex items-center justify-center animate-pulse-slow">
-            <svg
-              className="w-8 h-8 text-accent"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={1.5}
-                d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"
-              />
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={1.5}
-                d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-              />
-            </svg>
-          </div>
-          <div className="text-center">
-            <p className="text-white font-semibold text-lg">{title}</p>
-            <p className="text-gray-500 text-sm mt-1">
-              Connect a real game provider to start playing
-            </p>
-          </div>
-        </div>
-      )}
-
-      {!isPlaceholder && isLoading && (
+      {isLoading && (
         <div className="absolute inset-0 bg-dark z-10 flex items-center justify-center">
-          <div className="w-8 h-8 border-2 border-accent border-t-transparent rounded-full animate-spin" />
+          <div className="flex flex-col items-center gap-3">
+            <div className="w-10 h-10 border-2 border-accent border-t-transparent rounded-full animate-spin" />
+            <p className="text-gray-500 text-sm">Loading game...</p>
+          </div>
         </div>
       )}
 
-      {shouldLoad && (
+      {hasError ? (
+        <div className="absolute inset-0 bg-gradient-to-br from-dark via-card to-dark z-20 flex items-center justify-center">
+          <div className="text-center">
+            <div className="w-14 h-14 mx-auto rounded-full bg-red-500/10 flex items-center justify-center mb-4">
+              <svg className="w-7 h-7 text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z" />
+              </svg>
+            </div>
+            <p className="text-gray-400 font-semibold">Game unavailable</p>
+            <p className="text-gray-600 text-sm mt-1">The game failed to load. Try again later.</p>
+            <button
+              onClick={() => { setHasError(false); setIsLoading(true); setPlayClicked(true); }}
+              className="mt-4 px-4 py-2 glass rounded-xl text-accent text-sm hover:bg-accent/10 transition"
+            >
+              Retry
+            </button>
+          </div>
+        </div>
+      ) : (
         <iframe
+          ref={iframeRef}
           src={url}
           title={title}
-          className={`w-full h-full ${isPlaceholder ? "opacity-0" : ""}`}
+          className="w-full h-full"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowFullScreen
-          onLoad={() => setIsLoading(false)}
+          onLoad={handleIframeLoad}
+          onError={() => setHasError(true)}
           loading="lazy"
         />
       )}
 
-      <button
-        onClick={toggleFullscreen}
-        className="absolute top-4 right-4 z-30 glass text-white px-3 py-2 rounded-xl hover:bg-accent hover:text-dark transition-all flex items-center gap-2 text-sm"
-      >
-        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" />
-        </svg>
-        {isFullscreen ? "Exit" : "Fullscreen"}
-      </button>
+      {!hasError && (
+        <button
+          onClick={toggleFullscreen}
+          className="absolute top-4 right-4 z-30 glass text-white px-3 py-2 rounded-xl hover:bg-accent hover:text-dark transition-all flex items-center gap-2 text-sm"
+        >
+          <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" />
+          </svg>
+          {isFullscreen ? "Exit" : "Fullscreen"}
+        </button>
+      )}
     </div>
   );
 }
