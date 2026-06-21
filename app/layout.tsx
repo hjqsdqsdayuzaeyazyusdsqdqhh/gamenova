@@ -11,6 +11,11 @@ export const metadata: Metadata = {
   title: "GameNova - Play Free Browser Games",
   description:
     "Discover and play the best free browser games. Racing, Action, Sports, Puzzle, Arcade, Adventure, Strategy games all in one place.",
+  icons: {
+    icon: "/icon.svg",
+    shortcut: "/icon.svg",
+    apple: "/icon.svg",
+  },
   openGraph: {
     title: "GameNova - Play Free Browser Games",
     description: "Discover and play the best free browser games.",
