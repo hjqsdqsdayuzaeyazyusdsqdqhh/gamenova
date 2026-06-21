@@ -18,7 +18,6 @@ export default function GameIframe({ url, title }: Props) {
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [hasError, setHasError] = useState(false);
-  const [playClicked, setPlayClicked] = useState(false);
   const [reloadKey, setReloadKey] = useState(0);
 
   const isValid = url && url.length >= 10 && isValidIframe(url);
@@ -53,7 +52,6 @@ export default function GameIframe({ url, title }: Props) {
   };
 
   useEffect(() => {
-    if (!playClicked) return;
     console.log(`[GameNova] loading game: ${title} | ${url}`);
     const timer = setTimeout(() => {
       if (isLoading) {
@@ -63,7 +61,7 @@ export default function GameIframe({ url, title }: Props) {
       }
     }, 45000);
     return () => clearTimeout(timer);
-  }, [playClicked, isLoading, reloadKey, title, url]);
+  }, [isLoading, reloadKey, title, url]);
 
   if (!isValid) {
     return (
@@ -81,32 +79,9 @@ export default function GameIframe({ url, title }: Props) {
     );
   }
 
-  if (!playClicked) {
-    return (
-      <div
-        className="relative w-full min-h-[700px] bg-gradient-to-br from-dark via-card to-dark rounded-2xl border border-white/5 flex items-center justify-center group cursor-pointer"
-        onClick={() => {
-          console.log(`[GameNova] play clicked: ${title}`);
-          setPlayClicked(true);
-        }}
-      >
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent rounded-2xl pointer-events-none" />
-        <div className="text-center relative z-10">
-          <div className="w-20 h-20 mx-auto rounded-full bg-accent/90 flex items-center justify-center shadow-lg shadow-accent/20 group-hover:scale-110 transition-transform mb-4">
-            <svg className="w-9 h-9 text-dark ml-1" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M8 5v14l11-7z" />
-            </svg>
-          </div>
-          <p className="text-white text-xl font-bold">{title}</p>
-          <p className="text-gray-400 text-sm mt-1">Click to play</p>
-        </div>
-      </div>
-    );
-  }
-
-  const iframeSrc = playClicked
-    ? `${url}?gd_sdk_referrer_url=${encodeURIComponent(window.location.href)}`
-    : url;
+  const iframeSrc = `${url}?gd_sdk_referrer_url=${encodeURIComponent(
+    typeof window !== "undefined" ? window.location.href : ""
+  )}`;
 
   return (
     <div
