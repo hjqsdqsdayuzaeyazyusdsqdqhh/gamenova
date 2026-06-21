@@ -40,6 +40,9 @@ export default function RecentlyPlayedSection() {
             <div
               className={`h-24 bg-gradient-to-br ${game.thumbnail} rounded-xl relative overflow-hidden`}
             >
+              {game.image_url && (
+                <img src={game.image_url} alt={game.title} className="absolute inset-0 w-full h-full object-cover" />
+              )}
               <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors duration-300" />
               <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                 <div className="w-10 h-10 rounded-full bg-accent/90 flex items-center justify-center">

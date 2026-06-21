@@ -12,6 +12,7 @@ interface Props {
 
 export default function GameCard({ game }: Props) {
   const [fav, setFav] = useState(false);
+  const [imgError, setImgError] = useState(false);
 
   useEffect(() => {
     setFav(isFavorite(game.id));
@@ -78,10 +79,20 @@ export default function GameCard({ game }: Props) {
         <div
           className={`h-44 bg-gradient-to-br ${game.thumbnail} flex items-center justify-center relative overflow-hidden`}
         >
+          {game.image_url && !imgError && (
+            <img
+              src={game.image_url}
+              alt={game.title}
+              className="absolute inset-0 w-full h-full object-cover"
+              onError={() => setImgError(true)}
+            />
+          )}
+          {(!game.image_url || imgError) && (
+            <span className="text-2xl font-bold text-white/20 select-none group-hover:scale-110 transition-transform duration-300">
+              {game.title}
+            </span>
+          )}
           <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors duration-300" />
-          <span className="text-2xl font-bold text-white/20 select-none group-hover:scale-110 transition-transform duration-300">
-            {game.title}
-          </span>
           <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
             <div className="w-14 h-14 rounded-full bg-accent/90 flex items-center justify-center shadow-lg shadow-accent/20">
               <svg className="w-6 h-6 text-dark ml-0.5" fill="currentColor" viewBox="0 0 24 24">

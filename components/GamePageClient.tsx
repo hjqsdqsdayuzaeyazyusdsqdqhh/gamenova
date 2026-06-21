@@ -17,7 +17,7 @@ interface Props {
 }
 
 export default function GamePageClient({ game, related }: Props) {
-  const [play, setPlay] = useState(false);
+  const [play, setPlay] = useState(true);
 
   const isValid = isPlayableGame(game);
 

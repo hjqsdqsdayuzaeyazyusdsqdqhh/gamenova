@@ -41,10 +41,13 @@ export default function TrendingSlider({ games }: Props) {
             className="min-w-[240px]"
           >
             <Link href={`/game/${game.slug}`} className="block group">
-              <div
-                className={`h-36 bg-gradient-to-br ${game.thumbnail} rounded-xl relative overflow-hidden`}
-              >
-                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors duration-300" />
+                <div
+                  className={`h-36 bg-gradient-to-br ${game.thumbnail} rounded-xl relative overflow-hidden`}
+                >
+                  {game.image_url && (
+                    <img src={game.image_url} alt={game.title} className="absolute inset-0 w-full h-full object-cover" />
+                  )}
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors duration-300" />
                 <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   <div className="w-12 h-12 rounded-full bg-accent/90 flex items-center justify-center">
                     <svg className="w-5 h-5 text-dark ml-0.5" fill="currentColor" viewBox="0 0 24 24">
