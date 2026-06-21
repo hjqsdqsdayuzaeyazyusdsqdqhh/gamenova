@@ -104,6 +104,10 @@ export default function GameIframe({ url, title }: Props) {
     );
   }
 
+  const iframeSrc = playClicked
+    ? `${url}?gd_sdk_referrer_url=${encodeURIComponent(window.location.href)}`
+    : url;
+
   return (
     <div
       ref={containerRef}
@@ -142,7 +146,7 @@ export default function GameIframe({ url, title }: Props) {
         <iframe
           key={reloadKey}
           ref={iframeRef}
-          src={url}
+          src={iframeSrc}
           title={title}
           width="100%"
           height="700px"

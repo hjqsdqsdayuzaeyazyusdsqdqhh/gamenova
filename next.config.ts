@@ -8,7 +8,7 @@ const nextConfig: NextConfig = {
         headers: [
           {
             key: "Content-Security-Policy",
-            value: "default-src 'self' https:; frame-src 'self' https://html5.gamedistribution.com https://html5.gamemonetize.com https://*.gamedistribution.com; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://html5.gamedistribution.com https://*.gamedistribution.com https://*.gamemonetize.com; worker-src 'self' blob: https://html5.gamedistribution.com; connect-src 'self' https://html5.api.gamedistribution.com https://game.api.gamedistribution.com https://pm.gamedistribution.com https://img.gamedistribution.com https://*.gamedistribution.com https:; img-src 'self' https: data: blob:; style-src 'self' 'unsafe-inline' https:; media-src 'self' https: blob:;",
+            value: "default-src 'self' https: data: blob:; frame-src *; script-src 'self' 'unsafe-inline' 'unsafe-eval' https:; worker-src 'self' blob: https:; connect-src 'self' https: wss: ws:; img-src 'self' https: data: blob:; style-src 'self' 'unsafe-inline' https:; media-src 'self' https: blob:; font-src 'self' https: data:",
           },
           {
             key: "X-Frame-Options",
