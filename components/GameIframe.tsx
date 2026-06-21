@@ -126,6 +126,7 @@ export default function GameIframe({ url, title }: Props) {
           width="100%"
           height="700px"
           style={{ border: "none", width: "100%", height: "700px" }}
+          sandbox="allow-scripts allow-same-origin allow-forms allow-popups"
           allow="autoplay; accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen; gamepad; storage-access"
           allowFullScreen
           onLoad={handleIframeLoad}
