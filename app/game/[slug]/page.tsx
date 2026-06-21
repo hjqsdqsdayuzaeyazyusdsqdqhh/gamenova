@@ -1,13 +1,7 @@
-import Link from "next/link";
 import { Metadata } from "next";
 import { games } from "@/data/games";
-import { validateGame, isValidIframeUrl } from "@/lib/validate";
-import GameCard from "@/components/GameCard";
-import GameIframe from "@/components/GameIframe";
-import FavoriteButton from "@/components/FavoriteButton";
-import ShareButtons from "@/components/ShareButtons";
-import GameTags from "@/components/GameTags";
-import RecentlyPlayedTracker from "@/components/RecentlyPlayed";
+import { validateGame } from "@/lib/validate";
+import GamePageClient from "@/components/GamePageClient";
 import { notFound } from "next/navigation";
 
 const validGames = games.filter(validateGame);
@@ -45,86 +39,5 @@ export default async function GamePage({ params }: Props) {
     .filter((g) => g.category === game.category && g.id !== game.id)
     .slice(0, 4);
 
-  const isValid = game.iframe_url && game.iframe_url.length >= 10 && isValidIframeUrl(game.iframe_url);
-
-  return (
-    <div className="py-8 px-4 max-w-7xl mx-auto">
-      <RecentlyPlayedTracker gameId={game.id} />
-
-      <Link
-        href="/games"
-        className="text-accent hover:underline mb-6 inline-block text-sm"
-      >
-        &larr; Back to Games
-      </Link>
-
-      <div className="w-full flex bg-black rounded-2xl overflow-hidden" style={{ minHeight: "700px" }}>
-        {isValid ? (
-          <GameIframe url={game.iframe_url} title={game.title} />
-        ) : (
-          <div className="w-full min-h-[700px] bg-black flex items-center justify-center">
-            <div className="text-center">
-              <div className="w-14 h-14 mx-auto rounded-full bg-red-500/10 flex items-center justify-center mb-4">
-                <svg className="w-7 h-7 text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z" />
-                </svg>
-              </div>
-              <p className="text-gray-400 font-semibold">Game not available</p>
-              <p className="text-gray-600 text-sm mt-1">Invalid or missing game source</p>
-            </div>
-          </div>
-        )}
-      </div>
-
-      <div className="glass rounded-2xl p-6 md:p-8">
-        <div className="flex flex-wrap items-start justify-between gap-4 mb-4">
-          <div>
-            <Link
-              href={`/category/${game.category.toLowerCase()}`}
-              className="inline-block bg-accent/20 text-accent text-xs px-3 py-1 rounded-full hover:bg-accent/30 transition font-medium"
-            >
-              {game.category}
-            </Link>
-            <h1 className="text-3xl md:text-4xl font-bold text-white mt-3">
-              {game.title}
-            </h1>
-          </div>
-          <div className="flex items-center gap-3">
-            <div className="flex items-center gap-1.5 bg-accent/10 text-accent text-sm font-semibold px-3 py-1.5 rounded-full">
-              <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-              </svg>
-              {game.popularity_score}
-            </div>
-            <ShareButtons title={game.title} slug={game.slug} />
-            <FavoriteButton gameId={game.id} />
-          </div>
-        </div>
-
-        <p className="text-gray-400 text-base max-w-3xl leading-relaxed mb-6">
-          {game.description}
-        </p>
-
-        <GameTags tags={game.tags} />
-      </div>
-
-      {related.length > 0 && (
-        <section className="mt-12">
-          <div className="mb-6">
-            <h2 className="text-2xl font-bold text-white">
-              More {game.category} Games
-            </h2>
-            <p className="text-gray-500 text-sm mt-1">
-              You might also enjoy these games
-            </p>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            {related.map((g) => (
-              <GameCard key={g.id} game={g} />
-            ))}
-          </div>
-        </section>
-      )}
-    </div>
-  );
+  return <GamePageClient game={game} related={related} />;
 }
