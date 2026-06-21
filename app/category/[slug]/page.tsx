@@ -1,8 +1,11 @@
 import { Metadata } from "next";
 import Link from "next/link";
 import { games, categories } from "@/data/games";
+import { validateGame } from "@/lib/validate";
 import GameCard from "@/components/GameCard";
 import { notFound } from "next/navigation";
+
+const validGames = games.filter(validateGame);
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -32,7 +35,7 @@ export default async function CategoryPage({ params }: Props) {
   const cat = categories.find((c) => c.slug === slug);
   if (!cat) notFound();
 
-  const categoryGames = games
+  const categoryGames = validGames
     .filter((g) => g.category.toLowerCase() === slug)
     .sort((a, b) => b.popularity_score - a.popularity_score);
 

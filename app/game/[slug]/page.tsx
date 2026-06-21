@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Metadata } from "next";
 import { games } from "@/data/games";
+import { validateGame } from "@/lib/validate";
 import GameCard from "@/components/GameCard";
 import GameIframe from "@/components/GameIframe";
 import FavoriteButton from "@/components/FavoriteButton";
@@ -8,6 +9,8 @@ import ShareButtons from "@/components/ShareButtons";
 import GameTags from "@/components/GameTags";
 import RecentlyPlayedTracker from "@/components/RecentlyPlayed";
 import { notFound } from "next/navigation";
+
+const validGames = games.filter(validateGame);
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -38,7 +41,7 @@ export default async function GamePage({ params }: Props) {
   const game = games.find((g) => g.slug === slug);
   if (!game) notFound();
 
-  const related = games
+  const related = validGames
     .filter((g) => g.category === game.category && g.id !== game.id)
     .slice(0, 4);
 

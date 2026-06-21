@@ -4,7 +4,10 @@ import { Suspense, useMemo } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { games } from "@/data/games";
+import { validateGame } from "@/lib/validate";
 import GameCard from "@/components/GameCard";
+
+const validGames = games.filter(validateGame);
 
 function fuzzyScore(text: string, query: string): number {
   const lowerText = text.toLowerCase();
@@ -33,7 +36,7 @@ function SearchContent() {
     if (!query.trim()) return [];
     const q = query.trim();
 
-    const scored = games
+    const scored = validGames
       .map((game) => {
         let bestScore = 0;
         bestScore = Math.max(bestScore, fuzzyScore(game.title, q));

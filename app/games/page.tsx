@@ -4,10 +4,21 @@ import { Suspense, useMemo } from "react";
 import { useSearchParams } from "next/navigation";
 import { motion } from "framer-motion";
 import { games, categories } from "@/data/games";
+import { validateGame } from "@/lib/validate";
 import GameCard from "@/components/GameCard";
+import SkeletonCard from "@/components/SkeletonCard";
 import SearchBar from "@/components/SearchBar";
 import CategoryFilter from "@/components/CategoryFilter";
 import Link from "next/link";
+
+const validGames = games.filter(validateGame);
+
+if (typeof window !== "undefined") {
+  const invalid = games.filter((g) => !validateGame(g));
+  if (invalid.length > 0) {
+    console.warn(`[GameNova] ${invalid.length} invalid game(s) blocked:`, invalid.map((g) => g.title));
+  }
+}
 
 function GamesContent() {
   const searchParams = useSearchParams();
@@ -16,7 +27,7 @@ function GamesContent() {
   const currentSort = searchParams.get("sort") || "";
 
   const filtered = useMemo(() => {
-    let result = [...games];
+    let result = [...validGames];
 
     if (currentCategory) {
       result = result.filter(
@@ -128,7 +139,17 @@ export default function GamesPage() {
   return (
     <Suspense
       fallback={
-        <div className="py-12 text-center text-gray-400">Loading games...</div>
+        <div className="py-12 px-4 max-w-7xl mx-auto">
+          <div className="mb-8">
+            <div className="h-10 w-48 bg-white/5 rounded animate-pulse mb-2" />
+            <div className="h-4 w-32 bg-white/5 rounded animate-pulse" />
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            {Array.from({ length: 8 }).map((_, i) => (
+              <SkeletonCard key={i} />
+            ))}
+          </div>
+        </div>
       }
     >
       <GamesContent />

@@ -19,6 +19,7 @@ export default function GameIframe({ url, title }: Props) {
   const [isLoading, setIsLoading] = useState(true);
   const [hasError, setHasError] = useState(false);
   const [playClicked, setPlayClicked] = useState(false);
+  const [reloadKey, setReloadKey] = useState(0);
   const isValid = isValidIframe(url);
 
   useEffect(() => {
@@ -39,6 +40,12 @@ export default function GameIframe({ url, title }: Props) {
     }
   };
 
+  const handleReload = () => {
+    setHasError(false);
+    setIsLoading(true);
+    setReloadKey((k) => k + 1);
+  };
+
   const handleIframeLoad = () => {
     setIsLoading(false);
   };
@@ -52,7 +59,7 @@ export default function GameIframe({ url, title }: Props) {
       }
     }, 15000);
     return () => clearTimeout(timer);
-  }, [playClicked, isLoading]);
+  }, [playClicked, isLoading, reloadKey]);
 
   if (!isValid) {
     return (
@@ -114,7 +121,7 @@ export default function GameIframe({ url, title }: Props) {
             <p className="text-gray-400 font-semibold">Game unavailable</p>
             <p className="text-gray-600 text-sm mt-1">The game failed to load. Try again later.</p>
             <button
-              onClick={() => { setHasError(false); setIsLoading(true); setPlayClicked(true); }}
+              onClick={handleReload}
               className="mt-4 px-4 py-2 glass rounded-xl text-accent text-sm hover:bg-accent/10 transition"
             >
               Retry
@@ -123,6 +130,7 @@ export default function GameIframe({ url, title }: Props) {
         </div>
       ) : (
         <iframe
+          key={reloadKey}
           ref={iframeRef}
           src={url}
           title={title}
@@ -136,15 +144,28 @@ export default function GameIframe({ url, title }: Props) {
       )}
 
       {!hasError && (
-        <button
-          onClick={toggleFullscreen}
-          className="absolute top-4 right-4 z-30 glass text-white px-3 py-2 rounded-xl hover:bg-accent hover:text-dark transition-all flex items-center gap-2 text-sm"
-        >
-          <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" />
-          </svg>
-          {isFullscreen ? "Exit" : "Fullscreen"}
-        </button>
+        <div className="absolute top-4 right-4 z-30 flex gap-2">
+          <button
+            onClick={handleReload}
+            className="glass text-white px-3 py-2 rounded-xl hover:bg-accent hover:text-dark transition-all flex items-center gap-2 text-sm"
+            title="Reload game"
+          >
+            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+            </svg>
+            <span className="hidden sm:inline">Reload</span>
+          </button>
+          <button
+            onClick={toggleFullscreen}
+            className="glass text-white px-3 py-2 rounded-xl hover:bg-accent hover:text-dark transition-all flex items-center gap-2 text-sm"
+            title={isFullscreen ? "Exit fullscreen" : "Fullscreen"}
+          >
+            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" />
+            </svg>
+            <span className="hidden sm:inline">{isFullscreen ? "Exit" : "Fullscreen"}</span>
+          </button>
+        </div>
       )}
     </div>
   );

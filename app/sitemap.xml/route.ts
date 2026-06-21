@@ -1,6 +1,8 @@
 import { games, categories } from "@/data/games";
+import { validateGame } from "@/lib/validate";
 
 const BASE = "https://gamenova.vercel.app";
+const validGames = games.filter(validateGame);
 
 export async function GET() {
   const staticPages = [
@@ -9,7 +11,7 @@ export async function GET() {
     { url: "/search", priority: "0.6" },
   ];
 
-  const gamePages = games.map((g) => ({
+  const gamePages = validGames.map((g) => ({
     url: `/game/${g.slug}`,
     priority: "0.8",
   }));

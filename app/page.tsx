@@ -3,12 +3,15 @@ import GameCard from "@/components/GameCard";
 import TrendingSlider from "@/components/TrendingSlider";
 import RecentlyPlayedSection from "@/components/RecentlyPlayedSection";
 import { games, categories } from "@/data/games";
+import { validateGame } from "@/lib/validate";
+
+const validGames = games.filter(validateGame);
 
 export default function Home() {
-  const featuredGames = games.filter((g) => g.featured);
-  const trendingGames = [...games].filter((g) => g.trending).sort((a, b) => b.popularity_score - a.popularity_score);
-  const newGames = [...games].sort((a, b) => b.id - a.id).slice(0, 8);
-  const popularGames = [...games].sort((a, b) => b.popularity_score - a.popularity_score).slice(0, 8);
+  const featuredGames = validGames.filter((g) => g.featured);
+  const trendingGames = [...validGames].filter((g) => g.trending).sort((a, b) => b.popularity_score - a.popularity_score);
+  const newGames = [...validGames].sort((a, b) => b.id - a.id).slice(0, 8);
+  const popularGames = [...validGames].sort((a, b) => b.popularity_score - a.popularity_score).slice(0, 8);
 
   return (
     <div>
@@ -34,7 +37,7 @@ export default function Home() {
               <input
                 type="text"
                 name="q"
-                placeholder="Search 200+ games..."
+                placeholder="Search 50+ games..."
                 className="w-full px-4 py-3.5 pl-11 glass rounded-xl text-white placeholder-gray-400 focus:outline-none focus:border-accent/50 transition"
               />
               <svg
@@ -117,8 +120,8 @@ export default function Home() {
           </div>
         </div>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-7 gap-4">
-          {categories.map((cat) => {
-            const count = games.filter(
+            {categories.map((cat) => {
+            const count = validGames.filter(
               (g) => g.category.toLowerCase() === cat.slug
             ).length;
             return (
