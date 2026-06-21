@@ -10,7 +10,8 @@ interface Props {
 
 export function isValidIframe(url: string): boolean {
   if (!url || !url.startsWith("https://")) return false;
-  return url.includes("gamedistribution") || url.includes("gamemonetize");
+  if (url.includes("gamemonetize")) return true;
+  return url.startsWith("https://html5.gamedistribution.com/rvvASMiM/") && url.endsWith("/index.html");
 }
 
 export default function GameIframe({ url, title }: Props) {
@@ -83,9 +84,7 @@ export default function GameIframe({ url, title }: Props) {
     );
   }
 
-  const iframeSrc = `${url}?gd_sdk_referrer_url=${encodeURIComponent(
-    typeof window !== "undefined" ? window.location.href : ""
-  )}`;
+  const iframeSrc = url;
 
   return (
     <div

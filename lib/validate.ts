@@ -2,13 +2,12 @@ import { Game } from "@/data/games";
 
 export function isValidIframeUrl(url: string): boolean {
   if (!url || !url.startsWith("https://")) return false;
-  return url.includes("gamedistribution") || url.includes("gamemonetize");
+  if (url.includes("gamemonetize")) return true;
+  return url.startsWith("https://html5.gamedistribution.com/rvvASMiM/") && url.endsWith("/index.html");
 }
 
 export function isPlayableGame(game: Game): boolean {
-  if (!isValidIframeUrl(game.iframe_url)) return false;
-  if (!game.iframe_url.startsWith("https://html5")) return false;
-  return true;
+  return isValidIframeUrl(game.iframe_url);
 }
 
 export function validateGame(game: Game): boolean {

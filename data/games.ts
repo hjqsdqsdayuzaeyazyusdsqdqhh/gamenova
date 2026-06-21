@@ -19,7 +19,7 @@ export const games: Game[] = [
     description: "Race down snow-covered slopes in this thrilling 3D sledding game. Dodge obstacles, collect gifts, and go the distance.",
     thumbnail: "from-cyan-500 to-blue-600", category: "Racing",
     tags: ["racing", "snow", "3d"],
-    iframe_url: "https://html5.gamedistribution.com/e1e32230bdf040d69f4e367015e1c527/",
+    iframe_url: "https://html5.gamedistribution.com/rvvASMiM/e1e32230bdf040d69f4e367015e1c527/index.html",
     featured: true, trending: false, popularity_score: 95,
   },
   {
@@ -27,7 +27,7 @@ export const games: Game[] = [
     description: "Navigate through endless tunnels at high speed. Dodge obstacles and test your reflexes in this fast-paced runner.",
     thumbnail: "from-orange-500 to-red-600", category: "Racing",
     tags: ["racing", "tunnel", "endless"],
-    iframe_url: "https://html5.gamedistribution.com/14e87fab0cbf44b6b3e57ddb77af5941/",
+    iframe_url: "https://html5.gamedistribution.com/rvvASMiM/14e87fab0cbf44b6b3e57ddb77af5941/index.html",
     featured: false, trending: true, popularity_score: 88,
   },
   {
@@ -35,7 +35,7 @@ export const games: Game[] = [
     description: "Ride a sleigh through winter wonderlands. Collect gifts and purchase new sleighs as you race through snowy terrain.",
     thumbnail: "from-sky-400 to-blue-500", category: "Racing",
     tags: ["racing", "snow", "rider"],
-    iframe_url: "https://html5.gamedistribution.com/3b79a8537ebc414fb4f9672a9b8c68c8/",
+    iframe_url: "https://html5.gamedistribution.com/rvvASMiM/3b79a8537ebc414fb4f9672a9b8c68c8/index.html",
     featured: false, trending: false, popularity_score: 82,
   },
   {
@@ -43,7 +43,7 @@ export const games: Game[] = [
     description: "Test your skills on a randomised steep slope. Dodge red obstacles and stay on track as long as possible.",
     thumbnail: "from-amber-500 to-yellow-600", category: "Racing",
     tags: ["racing", "slope", "endless"],
-    iframe_url: "https://html5.gamedistribution.com/d2383d567433445db18e69e16744b0ba/",
+    iframe_url: "https://html5.gamedistribution.com/rvvASMiM/d2383d567433445db18e69e16744b0ba/index.html",
     featured: false, trending: false, popularity_score: 70,
   },
   {
@@ -51,7 +51,7 @@ export const games: Game[] = [
     description: "Race through city streets in a supercar. Barrel through packed streets, avoid crashes, and win the race.",
     thumbnail: "from-red-600 to-pink-600", category: "Racing",
     tags: ["racing", "cars", "city"],
-    iframe_url: "https://html5.gamedistribution.com/b371cbb4c6654b96a94248c957ac90e7/",
+    iframe_url: "https://html5.gamedistribution.com/rvvASMiM/b371cbb4c6654b96a94248c957ac90e7/index.html",
     featured: false, trending: true, popularity_score: 85,
   },
   {
@@ -59,7 +59,7 @@ export const games: Game[] = [
     description: "Roll through an ever-changing vibrant tunnel filled with deadly obstacles. Dodge, weave, and survive in this fast-paced infinite runner.",
     thumbnail: "from-orange-600 to-red-700", category: "Racing",
     tags: ["racing", "vortex", "reflex"],
-    iframe_url: "https://html5.gamedistribution.com/22c23c982349439294e9a3d0d55b7a76/",
+    iframe_url: "https://html5.gamedistribution.com/rvvASMiM/22c23c982349439294e9a3d0d55b7a76/index.html",
     featured: true, trending: false, popularity_score: 92,
   },
   {
@@ -67,7 +67,7 @@ export const games: Game[] = [
     description: "Take on the ultimate mud dirt bike racing challenge. Barrel through rough terrain at breakneck speeds.",
     thumbnail: "from-yellow-600 to-orange-700", category: "Racing",
     tags: ["racing", "bike", "dirt"],
-    iframe_url: "https://html5.gamedistribution.com/e804dc59653849d5b24fa5919662c2af/",
+    iframe_url: "https://html5.gamedistribution.com/rvvASMiM/e804dc59653849d5b24fa5919662c2af/index.html",
     featured: false, trending: false, popularity_score: 75,
   },
 
@@ -77,7 +77,7 @@ export const games: Game[] = [
     description: "Slice flying fruit with precision and style. Dodge bombs and chain combos in this addictive action classic.",
     thumbnail: "from-red-400 to-pink-500", category: "Action",
     tags: ["action", "fruit", "ninja"],
-    iframe_url: "https://html5.gamedistribution.com/a186dc9ac7f548f884db8ff54df6dd9f/",
+    iframe_url: "https://html5.gamedistribution.com/rvvASMiM/a186dc9ac7f548f884db8ff54df6dd9f/index.html",
     featured: true, trending: false, popularity_score: 96,
   },
   {
@@ -85,7 +85,7 @@ export const games: Game[] = [
     description: "Battle through the ages in this epic strategy action game. Evolve your civilization and conquer your enemies.",
     thumbnail: "from-amber-700 to-red-800", category: "Action",
     tags: ["action", "war", "strategy"],
-    iframe_url: "https://html5.gamedistribution.com/9467420d5c84482e9087276338a3a7b1/",
+    iframe_url: "https://html5.gamedistribution.com/rvvASMiM/9467420d5c84482e9087276338a3a7b1/index.html",
     featured: false, trending: true, popularity_score: 87,
   },
   {
@@ -93,7 +93,7 @@ export const games: Game[] = [
     description: "Test your fighting skills in this thrilling first person shooter. Battle in a blocky world with intense action.",
     thumbnail: "from-green-700 to-emerald-800", category: "Action",
     tags: ["action", "shooter", "pixel"],
-    iframe_url: "https://html5.gamedistribution.com/e2069a19b2f048efaf56d2f8ea038a35/",
+    iframe_url: "https://html5.gamedistribution.com/rvvASMiM/e2069a19b2f048efaf56d2f8ea038a35/index.html",
     featured: false, trending: false, popularity_score: 78,
   },
   {
@@ -101,7 +101,7 @@ export const games: Game[] = [
     description: "Unleash your destructive side in this demolition experience. Destroy towers with realistic physics and explosions.",
     thumbnail: "from-red-700 to-orange-800", category: "Action",
     tags: ["action", "destruction", "physics"],
-    iframe_url: "https://html5.gamedistribution.com/2df2062b223d4523bf8e813cca2baa33/",
+    iframe_url: "https://html5.gamedistribution.com/rvvASMiM/2df2062b223d4523bf8e813cca2baa33/index.html",
     featured: true, trending: false, popularity_score: 90,
   },
   {
@@ -109,7 +109,7 @@ export const games: Game[] = [
     description: "The classic rhythm-based platformer. Jump and fly through geometric obstacles in this addictive action game.",
     thumbnail: "from-purple-500 to-pink-600", category: "Action",
     tags: ["action", "rhythm", "platformer"],
-    iframe_url: "https://html5.gamedistribution.com/8b65f47d53a6406c8bc767cd1a16a2ec/",
+    iframe_url: "https://html5.gamedistribution.com/rvvASMiM/8b65f47d53a6406c8bc767cd1a16a2ec/index.html",
     featured: false, trending: true, popularity_score: 94,
   },
   {
@@ -117,7 +117,7 @@ export const games: Game[] = [
     description: "A challenging geometry dash experience with new levels and obstacles. Test your reflexes to the limit.",
     thumbnail: "from-indigo-500 to-purple-600", category: "Action",
     tags: ["action", "rhythm", "challenge"],
-    iframe_url: "https://html5.gamedistribution.com/0d44360735d24362b0d20031a7a10777/",
+    iframe_url: "https://html5.gamedistribution.com/rvvASMiM/0d44360735d24362b0d20031a7a10777/index.html",
     featured: false, trending: false, popularity_score: 81,
   },
   {
@@ -125,7 +125,7 @@ export const games: Game[] = [
     description: "A fun action game where you need to find and hit hidden balls. Quick reflexes and sharp eyes required.",
     thumbnail: "from-teal-500 to-cyan-600", category: "Action",
     tags: ["action", "reflex", "arcade"],
-    iframe_url: "https://html5.gamedistribution.com/4563680ee85c4a4c8d89744bbb6cff27/",
+    iframe_url: "https://html5.gamedistribution.com/rvvASMiM/4563680ee85c4a4c8d89744bbb6cff27/index.html",
     featured: false, trending: false, popularity_score: 68,
   },
 
@@ -135,7 +135,7 @@ export const games: Game[] = [
     description: "Build your dream team and lead them to become champions. A realistic football simulation with deep strategy.",
     thumbnail: "from-green-500 to-emerald-600", category: "Sports",
     tags: ["sports", "football", "soccer"],
-    iframe_url: "https://html5.gamedistribution.com/0e790569b4c74967923678652de3dbc4/",
+    iframe_url: "https://html5.gamedistribution.com/rvvASMiM/0e790569b4c74967923678652de3dbc4/index.html",
     featured: true, trending: false, popularity_score: 93,
   },
   {
@@ -143,7 +143,7 @@ export const games: Game[] = [
     description: "Cast your line and catch the biggest fish in this relaxing sports game. Grab all the fish and make the best score.",
     thumbnail: "from-blue-400 to-cyan-500", category: "Sports",
     tags: ["sports", "fishing", "casual"],
-    iframe_url: "https://html5.gamedistribution.com/64ef04b1fa93492faaeca326d1969e83/",
+    iframe_url: "https://html5.gamedistribution.com/rvvASMiM/64ef04b1fa93492faaeca326d1969e83/index.html",
     featured: false, trending: false, popularity_score: 72,
   },
   {
@@ -151,7 +151,7 @@ export const games: Game[] = [
     description: "Beat all your opponents in the 100 meters sprint. Every level gets harder as you race to become the fastest.",
     thumbnail: "from-yellow-400 to-amber-500", category: "Sports",
     tags: ["sports", "running", "sprint"],
-    iframe_url: "https://html5.gamedistribution.com/6bfd4a61cee4409dbedf37b07e00f08f/",
+    iframe_url: "https://html5.gamedistribution.com/rvvASMiM/6bfd4a61cee4409dbedf37b07e00f08f/index.html",
     featured: false, trending: true, popularity_score: 84,
   },
   {
@@ -159,7 +159,7 @@ export const games: Game[] = [
     description: "Test your bowling skills in this fun pin game. Aim carefully and knock down all the pins for a perfect strike.",
     thumbnail: "from-blue-500 to-indigo-600", category: "Sports",
     tags: ["sports", "bowling", "arcade"],
-    iframe_url: "https://html5.gamedistribution.com/f5ddfe5f7abc4632911a687d668b3b95/",
+    iframe_url: "https://html5.gamedistribution.com/rvvASMiM/f5ddfe5f7abc4632911a687d668b3b95/index.html",
     featured: false, trending: false, popularity_score: 70,
   },
   {
@@ -167,7 +167,7 @@ export const games: Game[] = [
     description: "Step into the ring and fight incoming enemies in this action-packed wrestling game. Pin your opponents to win.",
     thumbnail: "from-red-600 to-rose-700", category: "Sports",
     tags: ["sports", "wrestling", "fighting"],
-    iframe_url: "https://html5.gamedistribution.com/93b5c2a8c07846bd839f0a9e25ebf078/",
+    iframe_url: "https://html5.gamedistribution.com/rvvASMiM/93b5c2a8c07846bd839f0a9e25ebf078/index.html",
     featured: false, trending: false, popularity_score: 65,
   },
   {
@@ -175,7 +175,7 @@ export const games: Game[] = [
     description: "Outplay opponents using powerful kicks and unique power-ups. Climb divisions and become a football legend.",
     thumbnail: "from-lime-500 to-green-600", category: "Sports",
     tags: ["sports", "football", "arcade"],
-    iframe_url: "https://html5.gamedistribution.com/8d6f5a0f38c94c6b8a013ac330e85c3c/",
+    iframe_url: "https://html5.gamedistribution.com/rvvASMiM/8d6f5a0f38c94c6b8a013ac330e85c3c/index.html",
     featured: false, trending: true, popularity_score: 86,
   },
   {
@@ -183,7 +183,7 @@ export const games: Game[] = [
     description: "Behind the wheel of amazing vehicles, engage in exciting soccer matches. Drive, kick, and score your way to victory.",
     thumbnail: "from-emerald-500 to-teal-600", category: "Sports",
     tags: ["sports", "soccer", "vehicles"],
-    iframe_url: "https://html5.gamedistribution.com/3fa215490c4a43e18bb21c0f52a35a1c/",
+    iframe_url: "https://html5.gamedistribution.com/rvvASMiM/3fa215490c4a43e18bb21c0f52a35a1c/index.html",
     featured: false, trending: false, popularity_score: 77,
   },
 
@@ -193,7 +193,7 @@ export const games: Game[] = [
     description: "Merge beautiful flowers to create new species in this relaxing puzzle game. Grow your garden and discover rare blooms.",
     thumbnail: "from-pink-400 to-rose-500", category: "Puzzle",
     tags: ["puzzle", "merge", "flowers"],
-    iframe_url: "https://html5.gamedistribution.com/2e5863b7cc10444a88f72c81e74502f1/",
+    iframe_url: "https://html5.gamedistribution.com/rvvASMiM/2e5863b7cc10444a88f72c81e74502f1/index.html",
     featured: true, trending: false, popularity_score: 91,
   },
   {
@@ -201,7 +201,7 @@ export const games: Game[] = [
     description: "Sift through a sea of letters to find hidden words. Challenge yourself and solve puzzles in the shortest time.",
     thumbnail: "from-blue-300 to-cyan-400", category: "Puzzle",
     tags: ["puzzle", "words", "search"],
-    iframe_url: "https://html5.gamedistribution.com/ad5d6826df06457fb3da5d9649f8c900/",
+    iframe_url: "https://html5.gamedistribution.com/rvvASMiM/ad5d6826df06457fb3da5d9649f8c900/index.html",
     featured: false, trending: true, popularity_score: 83,
   },
   {
@@ -209,7 +209,7 @@ export const games: Game[] = [
     description: "Click on colorful tiles and remove groups of matching colors. Unlimited levels with increasing challenge.",
     thumbnail: "from-violet-400 to-indigo-500", category: "Puzzle",
     tags: ["puzzle", "tiles", "matching"],
-    iframe_url: "https://html5.gamedistribution.com/9252f32face14296a09725012315ca2e/",
+    iframe_url: "https://html5.gamedistribution.com/rvvASMiM/9252f32face14296a09725012315ca2e/index.html",
     featured: false, trending: false, popularity_score: 74,
   },
   {
@@ -217,7 +217,7 @@ export const games: Game[] = [
     description: "Drag and place blocks to complete rows and columns. A simple yet addictive puzzle game.",
     thumbnail: "from-sky-500 to-blue-600", category: "Puzzle",
     tags: ["puzzle", "blocks", "classic"],
-    iframe_url: "https://html5.gamedistribution.com/c5bffdc5d0964806a35f91327ec78d89/",
+    iframe_url: "https://html5.gamedistribution.com/rvvASMiM/c5bffdc5d0964806a35f91327ec78d89/index.html",
     featured: false, trending: false, popularity_score: 76,
   },
   {
@@ -225,7 +225,7 @@ export const games: Game[] = [
     description: "Stack blocks as high as you can in this challenging puzzle game. Precision and timing are key to success.",
     thumbnail: "from-amber-400 to-yellow-500", category: "Puzzle",
     tags: ["puzzle", "stacking", "blocks"],
-    iframe_url: "https://html5.gamedistribution.com/2c018ef182c04cb984761ddad538ad63/",
+    iframe_url: "https://html5.gamedistribution.com/rvvASMiM/2c018ef182c04cb984761ddad538ad63/index.html",
     featured: false, trending: false, popularity_score: 69,
   },
   {
@@ -233,7 +233,7 @@ export const games: Game[] = [
     description: "Match shiny gems in this legendary Match 3 game. Explore Mayan temples and solve ancient mysteries.",
     thumbnail: "from-cyan-400 to-teal-500", category: "Puzzle",
     tags: ["puzzle", "jewels", "matching"],
-    iframe_url: "https://html5.gamedistribution.com/0dd92ae2a7214f289608049167f2ebd4/",
+    iframe_url: "https://html5.gamedistribution.com/rvvASMiM/0dd92ae2a7214f289608049167f2ebd4/index.html",
     featured: true, trending: false, popularity_score: 89,
   },
   {
@@ -241,7 +241,7 @@ export const games: Game[] = [
     description: "Connect tiles and make combinations in this daily puzzle adventure. Come back every day for new challenges.",
     thumbnail: "from-fuchsia-500 to-purple-600", category: "Puzzle",
     tags: ["puzzle", "combinations", "daily"],
-    iframe_url: "https://html5.gamedistribution.com/c725caf57a5940deb09730cdf322f3a1/",
+    iframe_url: "https://html5.gamedistribution.com/rvvASMiM/c725caf57a5940deb09730cdf322f3a1/index.html",
     featured: false, trending: false, popularity_score: 71,
   },
   {
@@ -249,7 +249,7 @@ export const games: Game[] = [
     description: "Train your brain by sorting nuts and bolts of matching colors. Simple yet challenging puzzle gameplay.",
     thumbnail: "from-orange-400 to-amber-500", category: "Puzzle",
     tags: ["puzzle", "sorting", "casual"],
-    iframe_url: "https://html5.gamedistribution.com/1181e80fccb44318a69756c736bfbda7/",
+    iframe_url: "https://html5.gamedistribution.com/rvvASMiM/1181e80fccb44318a69756c736bfbda7/index.html",
     featured: false, trending: false, popularity_score: 73,
   },
 
@@ -259,7 +259,7 @@ export const games: Game[] = [
     description: "Crash through towering structures in this satisfying 3D destruction game. Knock down everything in your path.",
     thumbnail: "from-yellow-500 to-orange-600", category: "Arcade",
     tags: ["arcade", "destruction", "3d"],
-    iframe_url: "https://html5.gamedistribution.com/b375b05ea29b40abaaf3606a2ff215ad/",
+    iframe_url: "https://html5.gamedistribution.com/rvvASMiM/b375b05ea29b40abaaf3606a2ff215ad/index.html",
     featured: true, trending: false, popularity_score: 94,
   },
   {
@@ -267,7 +267,7 @@ export const games: Game[] = [
     description: "Ride your bike through challenging obstacle courses. Balance, jump, and navigate tricky terrain in this fun arcade game.",
     thumbnail: "from-green-500 to-lime-600", category: "Arcade",
     tags: ["arcade", "bike", "obstacle"],
-    iframe_url: "https://html5.gamedistribution.com/bc2f52c2d9d04e41aee48bef01075d22/",
+    iframe_url: "https://html5.gamedistribution.com/rvvASMiM/bc2f52c2d9d04e41aee48bef01075d22/index.html",
     featured: false, trending: true, popularity_score: 86,
   },
   {
@@ -275,7 +275,7 @@ export const games: Game[] = [
     description: "Cause chaos as a mischievous cat. Knock things over, explore environments, and create adorable destruction.",
     thumbnail: "from-amber-500 to-orange-600", category: "Arcade",
     tags: ["arcade", "cat", "simulator"],
-    iframe_url: "https://html5.gamedistribution.com/427f3a980dfc48e69e4329acdb5b9d8b/",
+    iframe_url: "https://html5.gamedistribution.com/rvvASMiM/427f3a980dfc48e69e4329acdb5b9d8b/index.html",
     featured: false, trending: false, popularity_score: 80,
   },
   {
@@ -283,7 +283,7 @@ export const games: Game[] = [
     description: "Control a jumping cube through platform levels. Jump over walls, avoid spikes, and time your moves perfectly.",
     thumbnail: "from-purple-500 to-pink-500", category: "Arcade",
     tags: ["arcade", "jump", "platformer"],
-    iframe_url: "https://html5.gamedistribution.com/83d6b2e54258442aa52f28e998ce53df/",
+    iframe_url: "https://html5.gamedistribution.com/rvvASMiM/83d6b2e54258442aa52f28e998ce53df/index.html",
     featured: false, trending: false, popularity_score: 75,
   },
   {
@@ -291,7 +291,7 @@ export const games: Game[] = [
     description: "An exciting game of speed and reaction. Destroy colorful falling balls by switching your platform color in time.",
     thumbnail: "from-cyan-500 to-blue-600", category: "Arcade",
     tags: ["arcade", "reflex", "color"],
-    iframe_url: "https://html5.gamedistribution.com/0fe275b0304e44a7b997cccddd7d3af7/",
+    iframe_url: "https://html5.gamedistribution.com/rvvASMiM/0fe275b0304e44a7b997cccddd7d3af7/index.html",
     featured: false, trending: true, popularity_score: 82,
   },
   {
@@ -299,7 +299,7 @@ export const games: Game[] = [
     description: "Dash through geometric obstacles in this rhythm-based arcade game. New characters and levels to conquer.",
     thumbnail: "from-indigo-500 to-violet-600", category: "Arcade",
     tags: ["arcade", "rhythm", "dash"],
-    iframe_url: "https://html5.gamedistribution.com/d0ca525fad114e5a99fdbc2703c01598/",
+    iframe_url: "https://html5.gamedistribution.com/rvvASMiM/d0ca525fad114e5a99fdbc2703c01598/index.html",
     featured: false, trending: false, popularity_score: 73,
   },
   {
@@ -307,7 +307,7 @@ export const games: Game[] = [
     description: "Pop colorful bubbles in this classic arcade shooter. Aim carefully and clear the board for the highest score.",
     thumbnail: "from-pink-400 to-purple-500", category: "Arcade",
     tags: ["arcade", "bubbles", "shooter"],
-    iframe_url: "https://html5.gamedistribution.com/03e358cc3331480795d74a55e4283686/",
+    iframe_url: "https://html5.gamedistribution.com/rvvASMiM/03e358cc3331480795d74a55e4283686/index.html",
     featured: false, trending: false, popularity_score: 78,
   },
 
@@ -317,7 +317,7 @@ export const games: Game[] = [
     description: "Solve puzzles to escape mysterious rooms. Find useful items, uncover secrets, and discover the golden key.",
     thumbnail: "from-emerald-600 to-green-700", category: "Adventure",
     tags: ["adventure", "escape", "puzzle"],
-    iframe_url: "https://html5.gamedistribution.com/360e8d8783d7468ea79e578bf996d328/",
+    iframe_url: "https://html5.gamedistribution.com/rvvASMiM/360e8d8783d7468ea79e578bf996d328/index.html",
     featured: true, trending: false, popularity_score: 92,
   },
   {
@@ -325,7 +325,7 @@ export const games: Game[] = [
     description: "Guide two heroes through a mysterious planet filled with portals. Unique abilities help solve challenging levels.",
     thumbnail: "from-violet-600 to-purple-700", category: "Adventure",
     tags: ["adventure", "portals", "puzzle"],
-    iframe_url: "https://html5.gamedistribution.com/60b096c6d39f49549cff3c08667743c2/",
+    iframe_url: "https://html5.gamedistribution.com/rvvASMiM/60b096c6d39f49549cff3c08667743c2/index.html",
     featured: false, trending: true, popularity_score: 85,
   },
   {
@@ -333,7 +333,7 @@ export const games: Game[] = [
     description: "Merge dragon eggs to unlock higher-level divine dragons. Discover new dragons with splendid animations.",
     thumbnail: "from-red-500 to-orange-600", category: "Adventure",
     tags: ["adventure", "dragons", "merge"],
-    iframe_url: "https://html5.gamedistribution.com/1726345e0eb4405a8bc8f20d14f33993/",
+    iframe_url: "https://html5.gamedistribution.com/rvvASMiM/1726345e0eb4405a8bc8f20d14f33993/index.html",
     featured: false, trending: false, popularity_score: 76,
   },
   {
@@ -341,7 +341,7 @@ export const games: Game[] = [
     description: "A minimalist puzzle platformer set in pitch black. Reveal surroundings with light and master timing to escape.",
     thumbnail: "from-slate-700 to-gray-800", category: "Adventure",
     tags: ["adventure", "dark", "puzzle"],
-    iframe_url: "https://html5.gamedistribution.com/21cfd950b7f34af88f9a40446f546ae0/",
+    iframe_url: "https://html5.gamedistribution.com/rvvASMiM/21cfd950b7f34af88f9a40446f546ae0/index.html",
     featured: false, trending: false, popularity_score: 70,
   },
   {
@@ -349,7 +349,7 @@ export const games: Game[] = [
     description: "A casual collection of fun mini-games. Simple gameplay that's fun and addictive for all ages.",
     thumbnail: "from-yellow-400 to-amber-500", category: "Adventure",
     tags: ["adventure", "mini-games", "casual"],
-    iframe_url: "https://html5.gamedistribution.com/8aefd5917a2847a9b77ca1cef4f039b2/",
+    iframe_url: "https://html5.gamedistribution.com/rvvASMiM/8aefd5917a2847a9b77ca1cef4f039b2/index.html",
     featured: false, trending: false, popularity_score: 68,
   },
   {
@@ -357,7 +357,7 @@ export const games: Game[] = [
     description: "Find your way out of challenging rooms and environments. Use logic and exploration to escape.",
     thumbnail: "from-teal-500 to-emerald-600", category: "Adventure",
     tags: ["adventure", "escape", "exploration"],
-    iframe_url: "https://html5.gamedistribution.com/6ccf5ab92bf4469ea1988aafaba35ca2/",
+    iframe_url: "https://html5.gamedistribution.com/rvvASMiM/6ccf5ab92bf4469ea1988aafaba35ca2/index.html",
     featured: false, trending: false, popularity_score: 72,
   },
   {
@@ -365,7 +365,7 @@ export const games: Game[] = [
     description: "Solve block puzzles in the mystical city of Atlantis. Slide pieces to clear the path and unlock the secrets.",
     thumbnail: "from-cyan-600 to-blue-700", category: "Adventure",
     tags: ["adventure", "puzzle", "atlantis"],
-    iframe_url: "https://html5.gamedistribution.com/ed65e4198fe74fdbb0b2ac015dd81128/",
+    iframe_url: "https://html5.gamedistribution.com/rvvASMiM/ed65e4198fe74fdbb0b2ac015dd81128/index.html",
     featured: true, trending: false, popularity_score: 88,
   },
 
@@ -375,7 +375,7 @@ export const games: Game[] = [
     description: "The classic board game reimagined. Roll the dice and race your pieces home in this timeless strategy game.",
     thumbnail: "from-red-500 to-rose-600", category: "Strategy",
     tags: ["strategy", "board", "classic"],
-    iframe_url: "https://html5.gamedistribution.com/46d75e16addf42a3a701fcb31e935c61/",
+    iframe_url: "https://html5.gamedistribution.com/rvvASMiM/46d75e16addf42a3a701fcb31e935c61/index.html",
     featured: true, trending: false, popularity_score: 90,
   },
   {
@@ -383,7 +383,7 @@ export const games: Game[] = [
     description: "Defend your base by strategically placing towers. Deploy heroes to stop endless waves of enemies.",
     thumbnail: "from-green-700 to-emerald-800", category: "Strategy",
     tags: ["strategy", "tower-defense", "tactics"],
-    iframe_url: "https://html5.gamedistribution.com/508663e69fe74b97a9192c779c3ff71f/",
+    iframe_url: "https://html5.gamedistribution.com/rvvASMiM/508663e69fe74b97a9192c779c3ff71f/index.html",
     featured: false, trending: true, popularity_score: 87,
   },
   {
@@ -391,7 +391,7 @@ export const games: Game[] = [
     description: "The classic game of X and O. Train your memory and practice strategy basics in this timeless challenge.",
     thumbnail: "from-gray-500 to-slate-600", category: "Strategy",
     tags: ["strategy", "classic", "board"],
-    iframe_url: "https://html5.gamedistribution.com/abebecfa89b646448c834963627b325d/",
+    iframe_url: "https://html5.gamedistribution.com/rvvASMiM/abebecfa89b646448c834963627b325d/index.html",
     featured: false, trending: false, popularity_score: 74,
   },
   {
@@ -399,7 +399,7 @@ export const games: Game[] = [
     description: "Strategically pop bubbles to clear the board. Plan your moves carefully for the highest score.",
     thumbnail: "from-sky-400 to-cyan-500", category: "Strategy",
     tags: ["strategy", "bubbles", "puzzle"],
-    iframe_url: "https://html5.gamedistribution.com/405c00612981466cbc5d9dcef4214811/",
+    iframe_url: "https://html5.gamedistribution.com/rvvASMiM/405c00612981466cbc5d9dcef4214811/index.html",
     featured: false, trending: false, popularity_score: 71,
   },
   {
@@ -407,7 +407,7 @@ export const games: Game[] = [
     description: "Merge coins of the same number to create higher values. Make a coin with number 10 to win this strategic puzzle.",
     thumbnail: "from-yellow-500 to-amber-600", category: "Strategy",
     tags: ["strategy", "coins", "merge"],
-    iframe_url: "https://html5.gamedistribution.com/7ea5afdd37a64eac95cb0d7600d46065/",
+    iframe_url: "https://html5.gamedistribution.com/rvvASMiM/7ea5afdd37a64eac95cb0d7600d46065/index.html",
     featured: false, trending: false, popularity_score: 66,
   },
   {
@@ -415,7 +415,7 @@ export const games: Game[] = [
     description: "Navigate through revolving platforms in this 3D arcade experience. Collect combos and earn big rewards.",
     thumbnail: "from-fuchsia-600 to-purple-700", category: "Strategy",
     tags: ["strategy", "jump", "3d"],
-    iframe_url: "https://html5.gamedistribution.com/c95fa207bfdf4097b5870d31f7a1cb40/",
+    iframe_url: "https://html5.gamedistribution.com/rvvASMiM/c95fa207bfdf4097b5870d31f7a1cb40/index.html",
     featured: false, trending: true, popularity_score: 83,
   },
   {
@@ -423,7 +423,7 @@ export const games: Game[] = [
     description: "Combine elements to create new items in this addictive alchemy game. Start from simple items and discover everything.",
     thumbnail: "from-indigo-400 to-purple-500", category: "Strategy",
     tags: ["strategy", "alchemy", "creation"],
-    iframe_url: "https://html5.gamedistribution.com/098ccbbe6c7f4d28868b6066b000477a/",
+    iframe_url: "https://html5.gamedistribution.com/rvvASMiM/098ccbbe6c7f4d28868b6066b000477a/index.html",
     featured: false, trending: false, popularity_score: 79,
   },
 ];
