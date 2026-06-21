@@ -5,8 +5,11 @@ import Link from "next/link";
 import { games, Game } from "@/data/games";
 import { getRecentlyPlayed } from "@/lib/storage";
 
+const FALLBACK_IMG = "https://via.placeholder.com/200x120/1a1a2e/ffffff?text=Game";
+
 export default function RecentlyPlayedSection() {
   const [recentGames, setRecentGames] = useState<Game[]>([]);
+  const [imgErrors, setImgErrors] = useState<Record<number, boolean>>({});
 
   useEffect(() => {
     const ids = getRecentlyPlayed();
@@ -18,6 +21,10 @@ export default function RecentlyPlayedSection() {
   }, []);
 
   if (recentGames.length === 0) return null;
+
+  const handleImgError = (id: number) => {
+    setImgErrors((prev) => ({ ...prev, [id]: true }));
+  };
 
   return (
     <section className="py-16 px-4 max-w-7xl mx-auto">
@@ -31,38 +38,31 @@ export default function RecentlyPlayedSection() {
         <p className="text-gray-500 text-sm mt-1">Pick up where you left off</p>
       </div>
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-8 gap-4">
-        {recentGames.map((game) => (
-          <Link
-            key={game.id}
-            href={`/game/${game.slug}`}
-            className="group text-center"
-          >
-            <div
-              className={`h-24 bg-gradient-to-br ${game.thumbnail} rounded-xl relative overflow-hidden`}
+        {recentGames.map((game) => {
+          const imageSrc = game.image_url && !imgErrors[game.id]
+            ? game.image_url
+            : `${FALLBACK_IMG}?text=${encodeURIComponent(game.title)}`;
+
+          return (
+            <Link
+              key={game.id}
+              href={`/game/${game.slug}`}
+              className="group text-center"
             >
-              {game.image_url && (
-                <img src={game.image_url} alt={game.title} className="absolute inset-0 w-full h-full object-cover" />
-              )}
-              {!game.image_url && (
-                <div className="flex items-center justify-center h-full">
-                  <svg className="w-6 h-6 text-white/20" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-                  </svg>
-                </div>
-              )}
-              <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <div className="w-10 h-10 rounded-full bg-accent/90 flex items-center justify-center">
-                  <svg className="w-4 h-4 text-dark ml-0.5" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M8 5v14l11-7z" />
-                  </svg>
-                </div>
+              <div className="relative overflow-hidden rounded-xl bg-gradient-to-br from-gray-800 to-gray-900">
+                <img
+                  src={imageSrc}
+                  alt={game.title}
+                  className="w-full h-24 object-cover block opacity-100 rounded-xl"
+                  onError={() => handleImgError(game.id)}
+                />
               </div>
-            </div>
-            <p className="text-xs text-gray-300 mt-2 truncate group-hover:text-accent transition-colors">
-              {game.title}
-            </p>
-          </Link>
-        ))}
+              <p className="text-xs text-gray-300 mt-2 truncate group-hover:text-accent transition-colors">
+                {game.title}
+              </p>
+            </Link>
+          );
+        })}
       </div>
     </section>
   );
